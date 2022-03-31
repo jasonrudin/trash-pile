@@ -1,4 +1,4 @@
-import { ContentWrapper } from "./ContentWrapper";
+import { ContentWrapper } from '../ContentWrapper';
 import React, { useEffect, useState } from 'react';
 
 
@@ -17,9 +17,9 @@ const TopBanner = () => {
     return (
         <div className="bg-black">
             <ContentWrapper>
-                <div className="flex justify-between">
-                    <span className="text-white">{time.toLocaleDateString([], { dateStyle: "long" }) + " " + time.toLocaleTimeString([], { timeStyle: "medium" })}</span>
-                    <span className="text-white">Connect Wallet</span>
+                <div className="flex justify-between text-sm font-bold py-1">
+                    <p className="text-white">{time.toLocaleDateString([], { dateStyle: "long" }) + " " + time.toLocaleTimeString([], { timeStyle: "medium" })}</p>
+                    <a className="text-white hover:cursor-pointer">Connect Wallet</a>
                 </div>
             </ContentWrapper>
         </div>

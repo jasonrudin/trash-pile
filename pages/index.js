@@ -1,21 +1,18 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import {Header} from '../components/Header'
+import { Header } from '../components/header/Header'
+import HomeContainer from '../components/HomeContainer'
 
-export default function Home(){
+export default function Home() {
   return (
-    <div className="">
+    <div className="bg-gray-200">
       <Head>
         <title>Department of Sanitation</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header/>
-      <div>
-      </div>
-      <footer>
-
-      </footer>
-
+      <Header />
+      <HomeContainer />
+      <footer className = "h-48 bg-gradient-to-t from-black to-gray-700"></footer>
     </div>
   )
 }
