@@ -1,21 +1,19 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import {Header} from '../components/Header'
 
 export default function Home(){
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="">
       <Head>
-        <title>Create Next App</title>
+        <title>Department of Sanitation</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-
-      </header>
+      <Header/>
       <div>
-
       </div>
       <footer>
-        
+
       </footer>
 
     </div>
