@@ -1,5 +1,6 @@
 import { ContentWrapper } from '../ContentWrapper';
 import React, { useEffect, useState } from 'react';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 
 
 const TopBanner = () => {
@@ -17,9 +18,9 @@ const TopBanner = () => {
     return (
         <div className="bg-black">
             <ContentWrapper>
-                <div className="flex justify-between text-sm font-bold py-1">
-                    <p className="text-white">{time.toLocaleDateString([], { dateStyle: "long" }) + " " + time.toLocaleTimeString([], { timeStyle: "medium" })}</p>
-                    <a className="text-white hover:cursor-pointer">Connect Wallet</a>
+                <div className="flex justify-between text-sm font-bold">
+                    <p className="text-white leading-normal h-auto py-2">{time.toLocaleDateString([], { dateStyle: "long" }) + " " + time.toLocaleTimeString([], { timeStyle: "medium" })}</p>
+                    <WalletMultiButton className = "font-sans text-sm font-bold h-auto leading-normal py-2 px-1" />
                 </div>
             </ContentWrapper>
         </div>
