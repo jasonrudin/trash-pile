@@ -20,7 +20,7 @@ const TopBanner = () => {
             <ContentWrapper>
                 <div className="flex justify-between text-sm font-bold">
                     <p className="text-white leading-normal h-auto py-2">{time.toLocaleDateString([], { dateStyle: "long" }) + " " + time.toLocaleTimeString([], { timeStyle: "medium" })}</p>
-                    <WalletMultiButton className = "font-sans text-sm font-bold h-auto leading-normal py-2 px-1" />
+                    <WalletMultiButton className = "font-sans text-sm font-bold h-auto leading-normal py-2 px-1"></WalletMultiButton>
                 </div>
             </ContentWrapper>
         </div>
