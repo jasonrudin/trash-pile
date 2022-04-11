@@ -1,10 +1,11 @@
 import { ContentWrapper } from "./ContentWrapper";
 import HomeContentWrapper from "./HomeContentWrapper";
 import Image from "next/image";
+import ViewWrapper from "./ViewWrapper";
 
 function HomeContainer() {
     return (
-        <div className = "bg-white my-16">
+        <ViewWrapper>
             <ContentWrapper>
                 <div className="flex py-24 items-center">
                     <HomeContentWrapper />
@@ -18,7 +19,7 @@ function HomeContainer() {
                     </div>
                 </div>
             </ContentWrapper>
-        </div>
+        </ViewWrapper>
 
     );
 }

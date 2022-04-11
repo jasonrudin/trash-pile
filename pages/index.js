@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { Header } from '../components/header/Header'
-import HomeContainer from '../components/HomeContainer'
+import HomeView from '../components/HomeView'
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <HomeContainer />
+      <HomeView />
       <footer className = "h-48 bg-gradient-to-t from-black to-gray-700"></footer>
     </div>
   )

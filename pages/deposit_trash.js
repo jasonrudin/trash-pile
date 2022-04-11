@@ -1,5 +1,5 @@
 import Head from "next/head";
-import DepositTrashContainer from "../components/DepositTrashContainer";
+import DepositTrashView from "../components/DepositTrashView";
 import { Header } from '../components/header/Header';
 
 function DepositTrashPage() {
@@ -10,7 +10,7 @@ function DepositTrashPage() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header />
-        <DepositTrashContainer/>
+        <DepositTrashView/>
         <footer className = "h-48 bg-gradient-to-t from-black to-gray-700"></footer>
       </div>
     );
