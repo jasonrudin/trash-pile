@@ -6,7 +6,12 @@ function NFTCard(props) {
     const [isSelected, setSelected] = useState(false);
 
     function handleClick() {
-        console.log('clicked');
+        if(isSelected === false){
+            props.addNFTToTrash(nft);
+        }
+        else{
+            props.removeNFTFromTrash(nft);
+        }
         setSelected(!isSelected);
     }
 

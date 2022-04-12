@@ -14,6 +14,7 @@ function DepositTrashContainer() {
     const { wallet, publicKey } = useWallet();
     const { connection } = useConnection();
     let balance = 0;
+    let nfts_to_trash = [];
 
     async function getBalance() {
         if (publicKey) {
@@ -39,9 +40,22 @@ function DepositTrashContainer() {
         }
     }
 
-    // getBalance();
+    function addNFTToTrash(nft){
+        nfts_to_trash.push(nft);
+        console.log(nfts_to_trash);
+        return nfts_to_trash;
+    }
 
-    console.log(testData);
+    function removeNFTFromTrash(nft){
+        const  index = nfts_to_trash.indexOf(nft);
+        if(index > -1){
+            nfts_to_trash.splice(index, 1);
+        }
+        console.log(nfts_to_trash);
+        return nfts_to_trash;
+    }
+
+    // getBalance();
 
     return (
         <ViewWrapper>
@@ -49,10 +63,15 @@ function DepositTrashContainer() {
                 <div>
                     <h1 className = "text-3xl font-bold pt-2">Your NFTs</h1>
                     <h2 className = ""> Select the NFTs that you want to add to the trash pile.</h2>
-                    <div className="flex flex-wrap w-fit mx-auto">
+                    <div className="grid grid-cols-4 justify-items-center">
                         {
                             testData.map((nft, index) => (
-                                <NFTCard nft={nft} key = {nft.id} />
+                                <NFTCard 
+                                nft={nft}
+                                key = {nft.id}
+                                addNFTToTrash = {addNFTToTrash}
+                                removeNFTFromTrash = {removeNFTFromTrash}
+                                />
                             ))
                         }
                     </div>
