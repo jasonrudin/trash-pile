@@ -8,6 +8,7 @@ import { ContentWrapper } from "./ContentWrapper";
 import ViewWrapper from "./ViewWrapper";
 import { testData } from "./test_nft_data";
 import NFTCard from "./NFTCard";
+import Button from "./Button";
 
 
 function DepositTrashContainer() {
@@ -40,15 +41,15 @@ function DepositTrashContainer() {
         }
     }
 
-    function addNFTToTrash(nft){
+    function addNFTToTrash(nft) {
         nfts_to_trash.push(nft);
         console.log(nfts_to_trash);
         return nfts_to_trash;
     }
 
-    function removeNFTFromTrash(nft){
-        const  index = nfts_to_trash.indexOf(nft);
-        if(index > -1){
+    function removeNFTFromTrash(nft) {
+        const index = nfts_to_trash.indexOf(nft);
+        if (index > -1) {
             nfts_to_trash.splice(index, 1);
         }
         console.log(nfts_to_trash);
@@ -59,27 +60,29 @@ function DepositTrashContainer() {
 
     return (
         <ViewWrapper>
-            <ContentWrapper>
-                <div>
-                    <h1 className = "text-3xl font-bold pt-2">Your NFTs</h1>
-                    <h2 className = ""> Select the NFTs that you want to add to the trash pile.</h2>
-                    <div className="grid grid-cols-4 justify-items-center">
+            <div className="max-h-[600px] overflow-auto">
+                <ContentWrapper>
+                    <div className= "bg-white sticky top-0 z-10 mb-2">
+                        <h1 className="text-3xl font-bold pt-2">Your NFTs</h1>
+                        <h2 className=""> Select the NFTs to add to the trash pile.</h2>
+                    </div>
+                    <div className="grid grid-cols-4 gap-y-6 gap-x-2 justify-items-center">
                         {
                             testData.map((nft, index) => (
-                                <NFTCard 
-                                nft={nft}
-                                key = {nft.id}
-                                addNFTToTrash = {addNFTToTrash}
-                                removeNFTFromTrash = {removeNFTFromTrash}
+                                <NFTCard
+                                    nft={nft}
+                                    key={nft.id}
+                                    addNFTToTrash={addNFTToTrash}
+                                    removeNFTFromTrash={removeNFTFromTrash}
                                 />
                             ))
                         }
                     </div>
+                </ContentWrapper>
+                <div className="flex justify-center py-6 bg-gradient-to-t from-white to-transparent sticky bottom-0">
+                    <Button buttonName="Review Your Selection"></Button>
                 </div>
-                <div>
-
-                </div>
-            </ContentWrapper>
+            </div>
         </ViewWrapper>
     );
 }

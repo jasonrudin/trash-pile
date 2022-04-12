@@ -16,16 +16,16 @@ function NFTCard(props) {
     }
 
     return (
-        <div className={`flex flex-col w-40 m-1 text-sm p-2 border-2 rounded-sm hover:cursor-pointer ${isSelected ? 'bg-cyan-50 border-cyan-400' : 'border-transparent'}`}
+        <div className={`flex flex-col w-44 text-sm border-2 rounded-sm hover:cursor-pointer ${isSelected ? 'bg-cyan-50 border-cyan-400' : 'border-transparent'}`}
             >
-            <div className="h-[140px]" onClick={
+            <div className="h-[176px]" onClick={
                 handleClick
             }>
                 <Image
                     src={nft.uri}
                     className="object-cover object-center"
-                    width={176}
-                    height={176}
+                    width={250}
+                    height={250}
                 />
             </div>
             <label className="pt-1 hover:cursor-pointer block truncate font-bold">

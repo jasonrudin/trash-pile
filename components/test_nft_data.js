@@ -24,29 +24,45 @@ export const testData = [
         name: "SolBear #5521",
         uri: "/nft_data/pig 8098.jpeg"
     }
-    ,    {
+    , {
         id: 6,
         name: "#49",
         uri: "/nft_data/row home.jpeg"
     }
-    ,    {
+    , {
         id: 7,
         name: "SolBear 4502",
         uri: "/nft_data/SolBear 4502.png"
     }
-    ,    {
+    , {
         id: 8,
         name: "SolCat #3051",
         uri: "/nft_data/SolCat 3051.png"
     }
-    ,    {
+    , {
         id: 9,
         name: "Gamer #821",
         uri: "/nft_data/The_Games_Characters_Editor_a_3.png"
     }
-    ,    {
+    , {
         id: 10,
         name: "Gamer #9821",
         uri: "/nft_data/The_Games_Characters_Editor_a_4.png"
     }
+    , {
+        id: 11,
+        name: "Gamer #821",
+        uri: "/nft_data/The_Games_Characters_Editor_a_3.png"
+    }
+    , {
+        id: 12,
+        name: "Gamer #9821",
+        uri: "/nft_data/The_Games_Characters_Editor_a_4.png"
+    }
+    , {
+        id: 13,
+        name: "SolCat #3051",
+        uri: "/nft_data/SolCat 3051.png"
+    }
+
 ];
