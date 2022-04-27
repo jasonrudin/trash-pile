@@ -41,6 +41,7 @@ function MyApp({ Component, pageProps }) {
     ],
     [network]
   );
+
   return (
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
