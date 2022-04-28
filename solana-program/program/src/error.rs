@@ -16,6 +16,9 @@ pub enum TrashpileError {
     /// Invalid instruction number passed in.
     #[error("Invalid instruction")]
     InvalidInstruction,
+    /// Invalid trash token mint authority
+    #[error("Invalid trash token mint authority")]
+    InvalidTrashTokenMintAuthority,
 }
 
 impl From<TrashpileError> for ProgramError {

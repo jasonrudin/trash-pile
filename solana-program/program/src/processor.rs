@@ -65,6 +65,16 @@ impl Processor {
             return Err(TrashpileError::InvalidDumpDestination.into());
         }
 
+        let trash_token_mint_authority_seeds = "$TRASH".as_bytes();
+        let (expected_trash_token_mint_authority_address,
+             trash_token_mint_authority_bump_seed) = Pubkey::find_program_address(
+                &[&trash_token_mint_authority_seeds[..]], 
+                program_id
+        );
+        if trash_token_mint_authority.key != &expected_trash_token_mint_authority_address {
+            return Err(TrashpileError::InvalidTrashTokenMintAuthority.into());
+        }
+
         /* transfer token_to_dump to program */
         let dump_ix = spl_token::instruction::transfer(
             token_program.key,
@@ -82,12 +92,6 @@ impl Processor {
         )?;
 
         /* mint and return trash token */
-        let trash_token_mint_authority_seeds = "$TRASH".as_bytes();
-        let (trash_token_mint_authority_address,
-             trash_token_mint_authority_bump_seed) = Pubkey::find_program_address(
-                 &[&trash_token_mint_authority_seeds[..]], 
-                 program_id
-        );
         let mint_signature_seeds = [
             &trash_token_mint_authority_seeds[..], 
             &[trash_token_mint_authority_bump_seed]
@@ -96,7 +100,7 @@ impl Processor {
             token_program.key,
             trash_token_mint.key,
             trash_token_dest.key,
-            &trash_token_mint_authority_address,
+            trash_token_mint_authority.key,
             &[],
             1000000000,
         )?;
@@ -126,6 +130,9 @@ impl PrintProgramError for TrashpileError {
             },
             TrashpileError::InvalidInstruction => {
                 msg!("Error: InvalidInstruction")
+            },
+            TrashpileError::InvalidTrashTokenMintAuthority => {
+                msg!("Error: trash token mint authority isn't expected PDA")
             },
         }
     }
