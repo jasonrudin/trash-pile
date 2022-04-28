@@ -64,7 +64,7 @@ impl Processor {
             &[token_to_dump_src.clone(),
               token_to_dump_dest.clone(),
               token_to_dump_authority.clone()]
-        );
+        )?;
 
         /* mint and return trash token */
         let trash_token_mint_authority_seeds = "$TRASH".as_bytes();
@@ -91,7 +91,7 @@ impl Processor {
               trash_token_dest.clone(),
               trash_token_mint_authority.clone()],
             &[&mint_signature_seeds[..]]
-        );
+        )?;
 
         Ok(())
     }
