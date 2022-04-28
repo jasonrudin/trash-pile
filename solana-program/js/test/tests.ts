@@ -21,7 +21,7 @@ import {
 import fs from 'mz/fs';
 import path from 'path';
 
-import {getPayer, getRpcUrl, createKeypairFromFile} from './utils';
+import {getPayer, getRpcUrl, createKeypairFromFile, getOrCreateTrashTokenMintAddress} from './utils';
 
 const PROGRAM_PATH = path.resolve(__dirname, '../../program/dist/program');
 const PROGRAM_SO_PATH = path.join(PROGRAM_PATH, 'trashpile_solana.so');
@@ -166,12 +166,10 @@ export async function establishTrashToken(): Promise<void> {
     programId
   );
 
-  trashTokenMintAddress = await createMint(
+  trashTokenMintAddress = await getOrCreateTrashTokenMintAddress(
     connection,
     payer,
-    trashTokenMintAuthorityAddress, // mintAuthority,
-    null, // freezeAuthority
-    9, // decimals
+    trashTokenMintAuthorityAddress
   );
   console.log(
     'Using trash token with mint ',

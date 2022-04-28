@@ -6,7 +6,8 @@ import os from 'os';
 import fs from 'mz/fs';
 import path from 'path';
 import yaml from 'yaml';
-import {Keypair} from '@solana/web3.js';
+import {createMint} from '@solana/spl-token';
+import {Connection, Keypair, PublicKey} from '@solana/web3.js';
 
 /**
  * @private
@@ -65,4 +66,42 @@ export async function createKeypairFromFile(
   const secretKeyString = await fs.readFile(filePath, {encoding: 'utf8'});
   const secretKey = Uint8Array.from(JSON.parse(secretKeyString));
   return Keypair.fromSecretKey(secretKey);
+}
+
+/**
+ * Create a Keypair from a secret key stored in file as bytes' array
+ */
+export async function getOrCreateTrashTokenMintAddress(
+   connection: Connection,
+   payer: Keypair,
+   trashTokenMintAuthorityAddress: PublicKey,
+): Promise<PublicKey> {
+  let trashTokenMintAddress: PublicKey;
+  const TTMA_FILE_PATH = path.resolve(
+    os.homedir(),
+    '.config',
+    'solana',
+    'cli',
+    'trash_token_mint_address.txt',
+  );
+  try {
+    const trashTokenMintAddressBase58 = await fs.readFile(TTMA_FILE_PATH, {encoding: 'utf8'});
+    trashTokenMintAddress = new PublicKey(trashTokenMintAddressBase58);
+    let trashTokenMintAddressAccountInfo = await connection.getAccountInfo( // check that address is operational
+      trashTokenMintAddress
+    );
+    if (!trashTokenMintAddressAccountInfo) throw new Error(
+      'Loaded invalid trashTokenMintAddress, proceeding to create a new one'
+    );
+  } catch(err) {
+    trashTokenMintAddress =  await createMint(
+      connection,
+      payer,
+      trashTokenMintAuthorityAddress, // mintAuthority,
+      null, // freezeAuthority
+      9, // decimals
+    );
+    fs.writeFile(TTMA_FILE_PATH, trashTokenMintAddress.toBase58(), {encoding: 'utf8'})
+  }
+  return trashTokenMintAddress;
 }
