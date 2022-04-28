@@ -50,6 +50,11 @@ impl Processor {
         let trash_token_dest = next_account_info(account_info_iter)?;
         let token_program = next_account_info(account_info_iter)?;
 
+        /* checks */
+        if amount <= 0 {
+            return Err(TrashpileError::InvalidDumpAmount.into());
+        }
+
         /* transfer token_to_dump to program */
         let dump_ix = spl_token::instruction::transfer(
             token_program.key,
@@ -103,7 +108,12 @@ impl PrintProgramError for TrashpileError {
         E: 'static + std::error::Error + DecodeError<E> + PrintProgramError + FromPrimitive,
     {
         match self {
-            TrashpileError::InvalidInstruction => msg!("Error: InvalidInstruction"),
+            TrashpileError::InvalidDumpAmount => {
+                msg!("Error: dump amount must be greater than 0")
+            },
+            TrashpileError::InvalidInstruction => {
+                msg!("Error: InvalidInstruction")
+            },
         }
     }
 }

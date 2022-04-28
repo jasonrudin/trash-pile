@@ -7,6 +7,9 @@ use thiserror::Error;
 /// Errors that may be returned by the program.
 #[derive(Clone, Debug, Eq, Error, FromPrimitive, PartialEq)]
 pub enum TrashpileError {
+    /// Invalid dump amount
+    #[error("Invalid dump amount")]
+    InvalidDumpAmount,
     /// Invalid instruction number passed in.
     #[error("Invalid instruction")]
     InvalidInstruction,
