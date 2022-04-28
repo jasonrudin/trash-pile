@@ -191,7 +191,8 @@ export async function dumpTokenToDump(): Promise<TransactionSignature> {
 
   console.log('Forming dump instruction...')
   const keys = [
-    {pubkey: payer.publicKey, isSigner: true, isWritable: false}, // token_to_dump_authority
+    {pubkey: tokenToDumpMintAddress, isSigner: false, isWritable: false}, // token_to_dump_mint
+    {pubkey: payer.publicKey, isSigner: true, isWritable: false}, // token_to_dump_owner
     {pubkey: tokenToDumpSrcAddress, isSigner: false, isWritable: true}, // token_to_dump_src
     {pubkey: tokenToDumpDest.address, isSigner: false, isWritable: true}, // token_to_dump_dest
     {pubkey: trashTokenMintAddress, isSigner: false, isWritable: true}, // trash_token_mint

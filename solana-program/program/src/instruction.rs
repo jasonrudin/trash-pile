@@ -15,13 +15,14 @@ pub enum TrashpileInstruction {
     /// Receives token to be dumped into trashpile, exchanges $TRASH
     /// 
     /// Expects the following accounts:
-    /// 0. `[writable, signer]` token to dump authority and funder
-    /// 1. `[writable]` token to dump source
-    /// 2. `[writable]` token to dump destination
-    /// 3. `[writable]` trash token mint
-    /// 4. `[]` trash token mint authority
-    /// 5. `[writable]` trash token destination
-    /// 6. `[]` token program
+    /// 0. `[]` token to dump mint
+    /// 1. `[writable, signer]` token to dump owner and funder
+    /// 2. `[writable]` token to dump source
+    /// 3. `[writable]` token to dump destination
+    /// 4. `[writable]` trash token mint
+    /// 5. `[]` trash token mint authority
+    /// 6. `[writable]` trash token destination
+    /// 7. `[]` token program
     Dump(Dump),
 }
 

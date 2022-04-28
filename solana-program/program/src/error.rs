@@ -10,6 +10,9 @@ pub enum TrashpileError {
     /// Invalid dump amount
     #[error("Invalid dump amount")]
     InvalidDumpAmount,
+    /// Invalid dump destination
+    #[error("Invalid dump destination")]
+    InvalidDumpDestination,
     /// Invalid instruction number passed in.
     #[error("Invalid instruction")]
     InvalidInstruction,

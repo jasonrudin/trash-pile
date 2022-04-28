@@ -16,6 +16,7 @@ use solana_program::{
     program_error::PrintProgramError,
     pubkey::Pubkey,
 };
+use spl_associated_token_account::get_associated_token_address;
 
 /// Program state handler.
 pub struct Processor {}
@@ -42,7 +43,8 @@ impl Processor {
         amount: u64,
     ) -> ProgramResult {
         let account_info_iter = &mut accounts.iter();
-        let token_to_dump_authority = next_account_info(account_info_iter)?;
+        let token_to_dump_mint = next_account_info(account_info_iter)?;
+        let token_to_dump_owner = next_account_info(account_info_iter)?;
         let token_to_dump_src = next_account_info(account_info_iter)?;
         let token_to_dump_dest = next_account_info(account_info_iter)?;
         let trash_token_mint = next_account_info(account_info_iter)?;
@@ -54,13 +56,21 @@ impl Processor {
         if amount <= 0 {
             return Err(TrashpileError::InvalidDumpAmount.into());
         }
+        
+        let associated_token_address = get_associated_token_address(
+            program_id,
+            token_to_dump_mint.key
+        );
+        if token_to_dump_dest.key != &associated_token_address {
+            return Err(TrashpileError::InvalidDumpDestination.into());
+        }
 
         /* transfer token_to_dump to program */
         let dump_ix = spl_token::instruction::transfer(
             token_program.key,
             token_to_dump_src.key,
             token_to_dump_dest.key,
-            token_to_dump_authority.key,
+            token_to_dump_owner.key,
             &[],
             amount,
         )?;
@@ -68,7 +78,7 @@ impl Processor {
             &dump_ix,
             &[token_to_dump_src.clone(),
               token_to_dump_dest.clone(),
-              token_to_dump_authority.clone()]
+              token_to_dump_owner.clone()]
         )?;
 
         /* mint and return trash token */
@@ -110,6 +120,9 @@ impl PrintProgramError for TrashpileError {
         match self {
             TrashpileError::InvalidDumpAmount => {
                 msg!("Error: dump amount must be greater than 0")
+            },
+            TrashpileError::InvalidDumpDestination => {
+                msg!("Error: dump destination must program's associated token account")
             },
             TrashpileError::InvalidInstruction => {
                 msg!("Error: InvalidInstruction")
