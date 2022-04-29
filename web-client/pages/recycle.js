@@ -1,5 +1,5 @@
 import Footer from "../components/Footer";
-import { Header } from '../components/header/Header';
+import Header from '../components/header/Header';
 import RecycleView from "../components/RecycleView";
 
 const Recycle = () => {

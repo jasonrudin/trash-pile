@@ -1,5 +1,5 @@
 import DepositTrashView from "../components/DepositTrashView";
-import { Header } from '../components/header/Header';
+import Header from '../components/header/Header';
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 import Footer from "../components/Footer";
 

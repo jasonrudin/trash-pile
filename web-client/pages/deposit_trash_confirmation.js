@@ -1,6 +1,6 @@
 import DepositTrashView from "../components/DepositTrashView";
 import Footer from "../components/Footer";
-import { Header } from '../components/header/Header';
+import Header from '../components/header/Header';
 
 const DepositTrashConfirmationPage = () => {
     return (
