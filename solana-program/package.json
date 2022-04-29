@@ -1,0 +1,28 @@
+{
+  "name": "trashpile-solana",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "compile_program": "cargo build-bpf --manifest-path=./program/Cargo.toml --bpf-out-dir=./program/dist/program",
+    "deploy_program": "solana program deploy ./program/dist/program/trashpile_solana.so",
+    "test_program": "ts-node js/test/main.ts"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.41.0",
+    "mz": "^2.7.0",
+    "yaml": "^2.0.0"
+  },
+  "devDependencies": {
+    "@solana/buffer-layout": "^4.0.0",
+    "@solana/spl-token": "^0.2.0",
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/mz": "^2.7.4",
+    "@types/yaml": "^1.9.7",
+    "depcheck": "^1.4.3",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  }
+}
