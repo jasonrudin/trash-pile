@@ -1,4 +1,5 @@
 import React, { FC, useMemo } from 'react';
+import Head from "next/head";
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
@@ -46,7 +47,13 @@ function MyApp({ Component, pageProps }) {
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
-          <Component {...pageProps} />
+          <div className="bg-gray-200">
+            <Head>
+              <title>Department of Sanitation</title>
+              <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <Component {...pageProps} />
+          </div>
         </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>

@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-function HomeContentWrapper() {
+const HomeContentWrapper = () => {
     return (
         <div className="w-2/3 pr-8">
             <div className="mt-0 h-2 w-40 bg-lime-500">

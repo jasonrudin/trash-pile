@@ -1,22 +1,16 @@
-import Head from "next/head";
 import DepositTrashView from "../components/DepositTrashView";
+import Footer from "../components/Footer";
 import { Header } from '../components/header/Header';
 
-function DepositTrashConfirmationPage() {
+const DepositTrashConfirmationPage = () => {
     return (
-        <div className="bg-gray-200">
-        <Head>
-          <title>Department of Sanitation</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+      <div>
         <Header />
-        <Link
-        href = "/deposit_trash"
-        >
+        <Link href="/deposit_trash">
             <a>Testing</a>
         </Link>
         <DepositTrashView/>
-        <footer className = "h-48 bg-gradient-to-t from-black to-gray-700"></footer>
+        <Footer />
       </div>
     );
 }

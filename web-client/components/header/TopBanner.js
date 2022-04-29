@@ -12,8 +12,7 @@ const TopBanner = () => {
 
     useEffect(() => {
         setInterval(updateTime, 1000);
-    }
-    );
+    });
 
     return (
         <div className="bg-black">
