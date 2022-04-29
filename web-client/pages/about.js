@@ -1,16 +1,12 @@
-import Head from "next/head";
-import { Header } from '../components/header/Header';
+import Footer from "../components/Footer";
+import Header from '../components/header/Header';
 
 function About() {
     console.log('made it');
     return (
-        <div className="bg-gray-200">
-        <Head>
-          <title>Department of Sanitation</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+      <div>
         <Header />
-        <footer className = "h-48 bg-gradient-to-t from-black to-gray-700"></footer>
+        <Footer />
       </div>
     );
 }

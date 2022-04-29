@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { useState } from "react";
 
-function NFTReviewScreenCard(props) {
-    let nft = props.nft;
+const NFTReviewScreenCard = props => {
+    const { nft, removeNFTFromTrash } = props;
 
     return (
         <div className={`flex h-[156px] my-4`}>
@@ -17,7 +17,7 @@ function NFTReviewScreenCard(props) {
             <div className="relative ml-2">
                 <h3 className="font-bold">{nft.name}</h3>
                 <span className="text-sm hover:cursor-pointer underline underline-offset-1 hover:text-cyan-400"
-                    onClick={() => props.removeNFTFromTrash(nft)}>
+                    onClick={() => removeNFTFromTrash(nft)}>
                     Remove
                 </span>
             </div>
