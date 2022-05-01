@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Image from "next/image";
 import { useState } from "react";
 
@@ -26,3 +27,19 @@ const NFTReviewScreenCard = props => {
 }
 
 export default NFTReviewScreenCard;
+
+NFTReviewScreenCard.propTypes = {
+    nft: PropTypes.shape({
+        name: PropTypes.string,
+        image: PropTypes.string
+    }),
+    removeNFTFromTrash: PropTypes.func
+};
+
+NFTReviewScreenCard.defaultProps= {
+    nft: {
+        name: '',
+        image: ''
+    },
+    removeNFTFromTrash: () => {}
+}

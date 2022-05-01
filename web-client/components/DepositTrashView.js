@@ -1,5 +1,6 @@
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 import React, { useState, useEffect, useMemo } from "react";
+import PropTypes from 'prop-types';
 import { clusterApiUrl, Connection, PublicKey, LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { ContentWrapper } from "./ContentWrapper";
@@ -101,6 +102,16 @@ const DepositTrashContainer = () => {
 }
 
 export default DepositTrashContainer;
+
+DepositTrashContainer.propTypes = {
+    wallet: PropTypes.shape({}),
+    publicKey: PropTypes.string
+};
+
+DepositTrashContainer.defaultProps = {
+    wallet: {},
+    publicKey: ''
+}
 
 // async function getBalance() {
 //     if (publicKey) {

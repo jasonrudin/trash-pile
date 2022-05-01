@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { ContentWrapper } from "./ContentWrapper";
 import ViewWrapper from "./ViewWrapper";
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
@@ -30,3 +31,13 @@ function RecycleView() {
 }
 
 export default RecycleView;
+
+RecycleView.propTypes = {
+    wallet: PropTypes.shape({}),
+    publicKey: PropTypes.string
+}
+
+RecycleView.defaultProps = {
+    wallet: {},
+    publicKey: ''
+}

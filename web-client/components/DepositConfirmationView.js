@@ -1,3 +1,5 @@
+
+import PropTypes from 'prop-types';
 import { ContentWrapper } from "./ContentWrapper";
 import NFTReviewScreenCard from "./NFTReviewScreenCard";
 import ViewWrapper from "./ViewWrapper";
@@ -64,9 +66,18 @@ const DepositConfirmationView = props => {
             </div>
         );
     }
-
-
-
 }
 
 export default DepositConfirmationView;
+
+DepositConfirmationView.propTypes = {
+    nftsToTrash: PropTypes.array,
+    changeConfirmationScreen: PropTypes.func,
+    removeNFTFromTrash: PropTypes.func
+};
+
+DepositConfirmationView.defaultProps = {
+    nftsToTrash: [],
+    changeConfirmationScreen: () =>{},
+    removeNFTFromTrash: () =>{}
+}
