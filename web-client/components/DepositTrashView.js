@@ -1,5 +1,6 @@
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 import React, { useState, useEffect, useMemo } from "react";
+import PropTypes from 'prop-types';
 import { clusterApiUrl, Connection, PublicKey, LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { ContentWrapper } from "./ContentWrapper";
@@ -10,7 +11,7 @@ import DepositConfirmationView from "./DepositConfirmationView";
 import WalletNotConnectedView from "./WalletNotConnectedView";
 
 
-function DepositTrashContainer() {
+const DepositTrashContainer = () => {
     const { wallet, publicKey } = useWallet();
     const [nfts_to_trash, setNFTs_To_Trash] = useState([]);
     const [isConfirming, setIsConfirming] = useState(false);
@@ -31,7 +32,7 @@ function DepositTrashContainer() {
         }
     });
 
-    function addNFTToTrash(nft) {
+    const addNFTToTrash = nft => {
         console.log(nfts_to_trash);
         if (nfts_to_trash.some(element => element.mintAddress === nft.mintAddress)) {
             console.log('To Trash does include the NFT already');
@@ -44,12 +45,12 @@ function DepositTrashContainer() {
         }
     }
 
-    function removeNFTFromTrash(nft) {
-        let placeholder = nfts_to_trash.filter((element) => element != nft);
+    const removeNFTFromTrash= nft => {
+        const placeholder = nfts_to_trash.filter((element) => element != nft);
         setNFTs_To_Trash(placeholder);
     }
 
-    function changeConfirmationScreen() {
+    const changeConfirmationScreen = () => {
         setIsConfirming(!isConfirming);
     }
 
@@ -101,6 +102,16 @@ function DepositTrashContainer() {
 }
 
 export default DepositTrashContainer;
+
+DepositTrashContainer.propTypes = {
+    wallet: PropTypes.shape({}),
+    publicKey: PropTypes.string
+};
+
+DepositTrashContainer.defaultProps = {
+    wallet: {},
+    publicKey: ''
+}
 
 // async function getBalance() {
 //     if (publicKey) {
