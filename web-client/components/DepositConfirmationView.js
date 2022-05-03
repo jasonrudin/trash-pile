@@ -1,15 +1,19 @@
+
+import PropTypes from 'prop-types';
 import { ContentWrapper } from "./ContentWrapper";
 import NFTReviewScreenCard from "./NFTReviewScreenCard";
 import ViewWrapper from "./ViewWrapper";
 import React, { useState, useEffect } from "react";
 import Button from "./Button";
 
-function DepositConfirmationView(props) {
-    if (props.nftsToTrash != null) {
+const DepositConfirmationView = props => {
+    const { nftsToTrash, changeConfirmationScreen, removeNFTFromTrash } = props;
+
+    if (nftsToTrash != null) {
         return (
             <ViewWrapper>
                 <ContentWrapper>
-                    <div className="text-sm hover:cursor-pointer" onClick={() => props.changeConfirmationScreen()}>
+                    <div className="text-sm hover:cursor-pointer" onClick={() => changeConfirmationScreen()}>
                         {`< Back`}
                     </div>
                     <div className="flex">
@@ -18,16 +22,16 @@ function DepositConfirmationView(props) {
                                 <h1 className="text-3xl font-bold pt-2">Review Your Deposit</h1>
                                 <h2 className="">Confirm the NFTs you'd like to throw away. This step cannot be undone.</h2>
                             </div>
-                            {props.nftsToTrash.length === 0 ?
+                            {nftsToTrash.length === 0 ?
                                 (
                                     <p>You aren't adding NFTs to the trash! Add some here.</p>
                                 ) :
                                 (
-                                    props.nftsToTrash.map((nft, index) => (
+                                    nftsToTrash.map((nft, index) => (
                                         <NFTReviewScreenCard
                                             nft={nft}
                                             key={nft.id}
-                                            removeNFTFromTrash={props.removeNFTFromTrash}
+                                            removeNFTFromTrash={removeNFTFromTrash}
                                         />
                                     ))
                                 )
@@ -40,13 +44,13 @@ function DepositConfirmationView(props) {
                             </div>
                             <div className="grid grid-cols-3 grid-rows-2">
                                 <h3 className="col-span-2">NFTs you're depositing:</h3>
-                                <h3 className="text-right">{props.nftsToTrash.length}</h3>
+                                <h3 className="text-right">{ nftsToTrash.length }</h3>
                                 <h3 className="col-span-2">$TRASH you receive:</h3>
                                 <h3 className="text-right">5,000</h3>
                             </div>
                             <Button
                                 buttonName="Deposit Trash"
-                                clickable={(props.nftsToTrash.length > 0) ? true : false}
+                                clickable={(nftsToTrash.length > 0) ? true : false}
                                 onClick={() => true}
                             />
                         </div>
@@ -62,9 +66,18 @@ function DepositConfirmationView(props) {
             </div>
         );
     }
-
-
-
 }
 
 export default DepositConfirmationView;
+
+DepositConfirmationView.propTypes = {
+    nftsToTrash: PropTypes.array,
+    changeConfirmationScreen: PropTypes.func,
+    removeNFTFromTrash: PropTypes.func
+};
+
+DepositConfirmationView.defaultProps = {
+    nftsToTrash: [],
+    changeConfirmationScreen: () =>{},
+    removeNFTFromTrash: () =>{}
+}

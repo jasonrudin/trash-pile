@@ -2,7 +2,7 @@ import LogoInHeader from "./LogoInHeader";
 import MainNavBar from "./MainNavBar";
 import TopBanner from "./TopBanner";
 
-export function Header(){
+const Header = () => {
     return (
         <header>
             <TopBanner/>
@@ -11,3 +11,5 @@ export function Header(){
         </header>
     );
 }
+
+export default Header;
